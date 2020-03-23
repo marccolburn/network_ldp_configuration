@@ -1,0 +1,5 @@
+---
+- name: Run Junos LDP Commands
+  junos_config:
+    lines: "{{ lookup('template', 'junos_ldp_config.j2').split('\n') }}"
+    comment: Update ldp config

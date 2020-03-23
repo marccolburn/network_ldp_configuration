@@ -1,0 +1,11 @@
+{% for interface in logical_interfaces %}
+{% if interface.mpls.state == True %}
+{% if interface.mpls.protocol == 'ldp' %}
+set protocols ldp interface {{ interface.name }}.{{ interface.unit }}
+set protocols mpls interface {{ interface.name }}.{{ interface.unit }}
+{% if interface.name != 'lo0' %}
+set interfaces {{ interface.name }} unit {{ interface.unit }} family mpls
+{% endif %}
+{% endif %}
+{% endif %}
+{% endfor %}
